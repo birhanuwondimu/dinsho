@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "solo-lending",
+  "private_key_id": "57cae51dab8e92149c7a1f32454cc400cd570675",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCL+Ap9QUiiBkx2\nP3iVr015KfU9+D/XWzrgO2xVSC5qSQn4pBTod7KplzV9FEZpvteKTighGuOxsVkw\nwjKwTYixslsBcr3ejHf6K0LKvILTPuZqqFIdckkNfcjjD+APWhwWYkpik3zbsvTn\nZ5LX1ODbgSPkxCl8VWWdGgWx5lwg/gTG1ppWr15AceaotpcJaMUprNdxsEHKGZKQ\nuXMVn+2tmXZM5FDXpkTqxAF5HAaRV4mtD8vYT+nQLs3Q3L2/COFcvl9hneaKvAZR\noNEBXFsXCgNZhfEoTqCJSVDylyAnDk6MaiOmSVNtvl77gARbuUf+FdPnIpQ7G+A+\nzKJBpM41AgMBAAECggEAFJ8ZMIYHRPPHnR5Rzj/TGrhPTO9/vGNRA8tNdS0axYb4\nRJ0sBWnpNSo1c7WigB7hU5ubNvFmvX3DBbd+z1HFA2UjGk4E4j5wyLdJ8mOepK/e\nM7WTz4nQcH/pMmba3HgqrjOSAP74xMeTZGpyjIDtFfnrR1+NOye7vk8gqqqlRSjf\n1KPL23zVizyMyq3PX/Qccux4kfnq0ycll2DZp9m81jH9BJ/onmoWdANF1A4F51BF\ng/P0KougxRfVX9M4CxwTVbGT1igpKN/Ds7/Mbo32f/mAGGbTlnHP/BloZ31wSjvK\nSX4eRnb5j+z0LX4fTLcvsbqbboMOIYV8jw9n/LneSwKBgQC++PmznfFzA+9mKyJn\nA2tbYFfDRl7Xtza+2OpivqT0aOx1FM1qAPs8J5cYNkV1a7KEhsQRqjv4Yc6AFjFI\ngUhr22fGlFzlQWF8H5robOfJ/erCGs70A70X4rBlDuXItojd5TNi5iHimb0yzFiQ\neZQbLBdcualmaGK5hFA50kcV+wKBgQC7oRd4KqNnmHSpQxZu5JVZzEcG38geu++n\nLMLM7JXA/tFSi8Ef3Dr9/sxM9LvQ6oPeogjbexdr1mzbzAUyLh52tFbO5Whed4db\n0rh/dU4N/bhyhdABJwYMekh3azhXHedGHkLxJgnTFuJZGWsezmSjI3YutqCgi2Ys\n7m026vLljwKBgAF7s4zGlEJ9bFWRzjGYoDPUeroEiOYKAT3YN3HO4z8WtYdvQu0o\n1sqv0AebHEz+KiPHXCx68v5J3C24fmd+wY485QBw1IvfRx+Mq0pU1jQGadVaGfNh\nOA3Ab/hI9lXpvQRkLFL/UJIO+Z40Yhe1KgZQAFpzArLN6r5gHbNlQ7ITAoGBAKQq\n2RwdQogcDscimfhBLKQ7ZlIPb0vk6FV/hppCzuzkiEYPXdUAnuUqEZur7sFm0Cb1\n44YWd3G1Vd4i7tDvJVx7ghDZDK7LKrYe86sh+j+npcEeb9byTAqS2+ERAWTIF1l0\nlOHmhGYb+cQ3x1BXChrrpjZNONH/5lCd9RU+EXTlAoGAatyEEI1Rv0L/690oC8ET\nyxydU8R2UYxJfO468iSHkm2Rf8przm+OG0ck45dZv+GR6WqbKKiZ7r1OsQNB3dop\nTK/jjSCQdWaupz45Lm46IqX7/QtCuNg9rO2LPem+NircnsKe/jkOzRzMWzWe0qyN\nZ++osNdU/p14Gv5ruDIgxDY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "solo-anaytics-299@solo-lending.iam.gserviceaccount.com",
+  "client_id": "106603661726023538623",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/solo-anaytics-299%40solo-lending.iam.gserviceaccount.com"
+}

@@ -1,0 +1,15 @@
+{
+  "bindings": [
+    {
+      "role": "roles/cloudsql.client",
+      "members": [
+        "serviceAccount:solo-anaytics-299@solo-lending.iam.gserviceaccount.com"
+      ],
+      "condition": {
+        "expression": "resource.name == 'projects/solo-lending/instances/solo-loans'&& resource.service == 'sqladmin.googleapis.com'"
+      }
+    }
+  ],
+  "etag": "BwXuanOvM6Y=",
+  "version": 1
+}

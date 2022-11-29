@@ -1,0 +1,101 @@
+{
+  "bindings": [
+    {
+      "members": [
+        "serviceAccount:solo-anaytics-299@solo-lending.iam.gserviceaccount.com"
+      ],
+      "role": "roles/actions.Admin"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@gcp-gae-service.iam.gserviceaccount.com"
+      ],
+      "role": "roles/appengine.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:1018849690264@cloudbuild.gserviceaccount.com"
+      ],
+      "role": "roles/cloudbuild.builds.builder"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+      ],
+      "role": "roles/cloudbuild.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@gcf-admin-robot.iam.gserviceaccount.com"
+      ],
+      "role": "roles/cloudfunctions.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@gcp-sa-cloudscheduler.iam.gserviceaccount.com"
+      ],
+      "role": "roles/cloudscheduler.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@compute-system.iam.gserviceaccount.com"
+      ],
+      "role": "roles/compute.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@containerregistry.iam.gserviceaccount.com"
+      ],
+      "role": "roles/containerregistry.ServiceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:1018849690264-compute@developer.gserviceaccount.com",
+        "serviceAccount:1018849690264@cloudservices.gserviceaccount.com",
+        "serviceAccount:solo-lending@appspot.gserviceaccount.com"
+      ],
+      "role": "roles/editor"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@firebase-rules.iam.gserviceaccount.com"
+      ],
+      "role": "roles/firebaserules.system"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@gcp-sa-firestore.iam.gserviceaccount.com"
+      ],
+      "role": "roles/firestore.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@gcp-sa-networkmanagement.iam.gserviceaccount.com"
+      ],
+      "role": "roles/networkmanagement.serviceAgent"
+    },
+    {
+      "members": [
+        "user:BirhanuWondimu@gmail.com"
+      ],
+      "role": "roles/owner"
+    },
+    {
+      "members": [
+        "serviceAccount:service-1018849690264@gcp-sa-pubsub.iam.gserviceaccount.com"
+      ],
+      "role": "roles/pubsub.serviceAgent"
+    },
+    {
+      "role": "roles/cloudsql.client",
+      "members": [
+        "serviceAccount:solo-anaytics-299@solo-lending.iam.gserviceaccount.com"
+      ],
+      "condition": {
+        "expression": "resource.name == 'projects/solo-lending/instances/solo-loans'&& resource.service == 'sqladmin.googleapis.com'"
+      }
+    }
+  ],
+  "etag": "BwXuanOvM6Y=",
+  "version": 1
+}

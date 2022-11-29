@@ -1,0 +1,36 @@
+plugins {
+	id 'application'
+	id 'org.springframework.boot' version '2.6.13'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+application {
+    mainClass = 'com.dinsho.solo.SoloApplication'
+}
+
+group = 'com.dinsho'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
+
+	// https://mvnrepository.com/artifact/com.microsoft.playwright/playwright
+implementation 'com.microsoft.playwright:playwright:1.28.0'
+// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter-sql-mysql
+implementation 'org.springframework.cloud:spring-cloud-gcp-starter-sql-mysql:1.2.8.RELEASE'
+// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter
+implementation 'org.springframework.cloud:spring-cloud-gcp-starter:1.2.8.RELEASE'
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
