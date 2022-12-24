@@ -27,4 +27,20 @@ public class Utils {
         return str == null || str.length() == 0;
     }
 
+    public static String getMapKey(String borrower, String loanReason) {
+
+        if (NullOrEmpty(borrower) && NullOrEmpty(loanReason))
+            return null;
+
+        String replace = "[^a-zA-Z0-9\\s]";
+        if (NullOrEmpty(loanReason))
+            return borrower.replace(replace, "").replaceAll(" ", "");
+
+        if (NullOrEmpty(borrower))
+            return loanReason.replace(replace, "").replaceAll(" ", "");
+
+        return borrower.replace(replace, "").replaceAll(" ", "") + "_"
+                + loanReason.replaceAll(replace, "").replaceAll(" ", "");
+    }
+
 }

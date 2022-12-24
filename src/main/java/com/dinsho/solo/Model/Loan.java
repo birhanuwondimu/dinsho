@@ -160,6 +160,20 @@ public class Loan {
         this.status = status;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+
+        if (this.getClass() != other.getClass()) {
+            return false;
+        }
+        Loan o = (Loan) other;
+        return (this.borrower.equals(o.borrower) && this.loanReason.equals(o.loanReason)
+                && this.paybackDate.equals(o.paybackDate));
+    }
+
     public boolean IsPotentiallyLendable() {
         return (this.getSoloScore() >= 85);
     }
@@ -184,35 +198,23 @@ public class Loan {
                 .filter(payment -> payment.getPaymentStatus().equals("late")).count();
     }
 
-    public boolean equals(Loan other) {
-        if (other == null) {
-            return false;
-        }
-
-        if (this.getClass() != other.getClass()) {
-            return false;
-        }
-        return (this.borrower.equals(other.borrower) && this.loanReason.equals(other.loanReason)
-                && this.paybackDate.equals(other.paybackDate));
-    }
-
     private boolean hasLatePayment() {
 
         return paymentHistory.stream()
                 .filter(payment -> payment.getPaymentStatus().equals("late")).count() > 0;
     }
 
-    public boolean approved65To75() {
+    public boolean approveOrange() {
         ZonedDateTime curr = ZonedDateTime.now();
         return (!this.hasLatePayment()
-                && (this.getPaybackDate().minusDays(8).toEpochSecond() < curr.toEpochSecond())
+                && (this.getPaybackDate().minusDays(10).toEpochSecond() < curr.toEpochSecond())
                 && this.getSoloScore() >= 65);
     }
 
-    public boolean approved75To85() {
+    public boolean approvedBlue() {
         ZonedDateTime curr = ZonedDateTime.now();
         return (!this.hasLatePayment()
-                && (this.getPaybackDate().minusDays(11).toEpochSecond() < curr.toEpochSecond())
-                && this.getSoloScore() >= 75);
+                && (this.getPaybackDate().minusDays(12).toEpochSecond() < curr.toEpochSecond())
+                && this.getSoloScore() >= 73);
     }
 }

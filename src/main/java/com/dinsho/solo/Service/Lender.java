@@ -121,7 +121,7 @@ public class Lender {
 
           Loan loan = getLoanDetailV2(page);
 
-          if (loan != null && (loan.IsLendable() || loan.approved65To75() || loan.approved75To85())) {
+          if (loan != null && (loan.IsLendable() || loan.approveOrange() || loan.approvedBlue())) {
 
             Locator SLPCheckBox = page.locator(SLP_CHECKBOX_LOCATOR);
 

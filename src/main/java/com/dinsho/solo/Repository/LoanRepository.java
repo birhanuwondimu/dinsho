@@ -1,5 +1,6 @@
 package com.dinsho.solo.Repository;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,10 +12,11 @@ import com.dinsho.solo.Model.Loan;
 
 @Repository
 public interface LoanRepository extends JpaRepository<Loan, Long> {
-    public final static String FIND_BY_BORROWER_QUERY = "SELECT * FROM loan WHERE borrower = :borrower AND loan_reason = :loanReason";
+    public final static String FIND_BY_BORROWER_QUERY = "SELECT * FROM loan WHERE borrower = :borrower AND loan_reason = :loanReason AND ABS(DATEDIFF(payback_date,:paybackDate))<=1";
     // List<Loan> findByBorrower(String name);
 
     @Query(value = FIND_BY_BORROWER_QUERY, nativeQuery = true)
-    List<Loan> findByQuery(@Param("borrower") String borrower, @Param("loanReason") String loanReason);
+    List<Loan> findByQuery(@Param("borrower") String borrower, @Param("loanReason") String loanReason,
+            @Param("paybackDate") ZonedDateTime paybackDate);
 
 }

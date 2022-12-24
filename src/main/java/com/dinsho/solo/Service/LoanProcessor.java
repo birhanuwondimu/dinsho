@@ -3,16 +3,13 @@ package com.dinsho.solo.Service;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 import java.io.FileNotFoundException;
+import java.security.cert.CertPathValidatorException.Reason;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.dinsho.solo.Utils;
@@ -65,35 +62,54 @@ public class LoanProcessor {
 
             page.getByRole(AriaRole.OPTION, new Page.GetByRoleOptions().setName(pattern)).click();
 
-            int loanCount = 320;
+            int loanCount = 500;
             LoanModule loanModule = new LoanModule(constants);
             String borrowerLocator = "//*[@id='__next']/main/div/div/div[3]/div/div[%s]/div[2]/div/div[1]/h5";
             String loanResaonLocator = "//*[@id='__next']/main/div/div/div[3]/div/div[%s]/div[2]/div/div[2]/div[4]/h5[2]";
             String paybackLocator = "//*[@id='__next']/main/div/div/div[3]/div/div[%s]/div[2]/div/div[2]/div[3]/h5[2]";
 
+            //// *[@id="__next"]/main/div/div/div[3]/div/div[437]/div[1]
+            //// *[@id="__next"]/main/div/div/div[3]/div/div[436]/div[1]/span
+            //// *[@id="__next"]/main/div/div/div[3]/div/div[438]/div[1]/span
+            //// *[@id="__next"]/main/div/div/div[3]/div/div[435]/div[1]/span
             for (int i = 1; i <= loanCount; i++) {
-                String borrowerName = page.locator(String.format(borrowerLocator, String.valueOf(i))).textContent();
-                String loanReason = page.locator(String.format(loanResaonLocator, String.valueOf(i))).textContent();
+                String LoanStatus = page.locator(String
+                        .format("//*[@id='__next']/main/div/div/div[3]/div/div[%s]/div[1]/span", String.valueOf(i)))
+                        .textContent();
 
-                // String paybackDateText = page.locator(String.format(paybackLocator,
-                // String.valueOf(i))).textContent();
-                // ZonedDateTime paybackDate =
-                // ZonedDateTime.now().plusDays(Utils.getNumberFromString(paybackDateText));
+                // Only run for funded loan
+                if (LoanStatus.equals("Funded")) {
+                    String borrowerName = page.locator(String.format(borrowerLocator, String.valueOf(i))).textContent()
+                            .trim();
+                    String loanReason = page.locator(String.format(loanResaonLocator, String.valueOf(i))).textContent()
+                            .trim();
 
-                if (loanRepository.findByQuery(borrowerName, loanReason).isEmpty()) {
-                    String currLoanLocator = String.format(LOAN_GRID_LOCATOR, String.valueOf(i));
-                    page.locator(currLoanLocator).click();
-                    assertThat(page).hasURL("https://app.solofunds.io/loans/detail");
+                    String paybackDateText = page.locator(String.format(paybackLocator,
+                            String.valueOf(i))).textContent();
+                    ZonedDateTime paybackDate = ZonedDateTime.now()
+                            .plusDays(Utils.getNumberFromString(paybackDateText));
+                    if (!borrowerName.equals("Bryan C.")) {
+                        if (loanRepository.findByQuery(borrowerName, loanReason, paybackDate).isEmpty()) {
+                            String currLoanLocator = String.format(LOAN_GRID_LOCATOR, String.valueOf(i));
+                            page.locator(currLoanLocator).click();
+                            assertThat(page).hasURL("https://app.solofunds.io/loans/detail");
 
-                    Loan loan = loanModule.getLoanDetailV2(page, i);
+                            Loan loan = loanModule.getLoanDetailV2(page, i);
+                            if (loan == null) {
+                                System.out.println(
+                                        "unable to get loan with borrowe :" + borrowerName + " reason : " + loanReason);
+                            } else {
+                                List<PaymentHistory> paymentHistory = paymentHistoryRepository
+                                        .findByBorrower(loan.getBorrower());
+                                removeDuplicatePaymentHistory(loan, paymentHistory);
+                                loanRepository.save(loan);
 
-                    List<PaymentHistory> paymentHistory = paymentHistoryRepository.findByBorrower(loan.getBorrower());
-                    removeDuplicatePaymentHistory(loan, paymentHistory);
-                    loanRepository.save(loan);
-
-                    page.getByRole(AriaRole.IMG, new Page.GetByRoleOptions().setName("ArrowLeft")).click();
-                    assertThat(page).hasURL("https://app.solofunds.io/loans");
-                    page.locator("button:has-text(\"Current\")").click();
+                                page.getByRole(AriaRole.IMG, new Page.GetByRoleOptions().setName("ArrowLeft")).click();
+                                assertThat(page).hasURL("https://app.solofunds.io/loans");
+                                page.locator("button:has-text(\"Current\")").click();
+                            }
+                        }
+                    }
                 }
             }
         } catch (
@@ -145,5 +161,3 @@ public class LoanProcessor {
     }
 
 }
-//// *[@id="__next"]/main/div/div/div[3]/div/div[1]/div[2]/div/div[1]/h5
-//// *[@id="__next"]/main/div/div/div[3]/div/div[%s]/div[2]/div/div[1]/h5
